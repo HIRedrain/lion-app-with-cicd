@@ -19,7 +19,7 @@ public class Student {
 
     @Id
     @Column(name = "sid")
-    private Integer studentId;
+    private Long studentId;
 
     @Column(name = "sname")
     private String studentName;
