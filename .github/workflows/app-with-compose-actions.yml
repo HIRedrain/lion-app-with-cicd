@@ -68,6 +68,10 @@ jobs:
         script: |
             cd
             sudo docker-compose down
+            sudo fuser -k -n tcp 8080 || true
+            sudo docker stop $(sudo docker ps -aq)
+            sudo docker container prune -f
+            sudo docker rmi $(sudo docker images -aq)
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app-with-cicd
             sudo docker-compose up -d
             sudo docker image prune -a -f
