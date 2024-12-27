@@ -1,2 +1,3 @@
 # lion-app-with-cicd
-241227 멋사
+# 2024.12.27 ~ 
+# Docker Compose + GIthub Actions
