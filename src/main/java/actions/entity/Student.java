@@ -1,13 +1,10 @@
 package actions.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @NoArgsConstructor
@@ -19,8 +16,13 @@ public class Student {
 
     @Id
     @Column(name = "sid")
-    private Long studentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // id 자동 할당
+    private long studentId;
 
-    @Column(name = "sname")
+    @Column(name = "sname", nullable = false)
     private String studentName;
+
+    public void updateSname(Student student) { // 학생 이름 변경
+        this.studentName = student.getStudentName();
+    }
 }
