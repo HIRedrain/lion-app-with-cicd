@@ -35,12 +35,11 @@ jobs:
 
     - name: Build, tag, and push docker image to Amazon ECR private
       env:
-        REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
         REGISTRY_ALIAS: ${{ secrets.AWS_ECR_PRIVATE }}
-        REPOSITORY: first-ecr
+        REPOSITORY: first-private-ecr
         IMAGE_TAG: latest
       run: |
-        aws ecr-public get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_PRIVATE }}
+        aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_PRIVATE }}
 
         # ECR 에다가 접근해서 올려 주는 거
         docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
