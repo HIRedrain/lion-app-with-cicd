@@ -43,5 +43,7 @@ jobs:
         
         # ECR 에다가 접근해서 올려 주는 거
         docker build -t app .
+
+        docker tag app:latest 913524935501.dkr.ecr.ap-northeast-2.amazonaws.com/app:latest
         
         docker push ${{ secrets.AWS_ECR_PRIVATE }}/app:latest
