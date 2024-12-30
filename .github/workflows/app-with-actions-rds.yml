@@ -66,13 +66,18 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
             cd
-            sudo docker-compose down
             sudo fuser -k -n tcp 8080 || true
             sudo docker stop $(sudo docker ps -aq)
             sudo docker container prune -f
             sudo docker rmi $(sudo docker images -aq)
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/lion-app-with-actions:latest
-            sudo docker-compose up -d
+
+            sudo docker run \
+            -d -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/lion-app-with-actions:latest \
+            -e SPRING_DATASOURCE_URL=jdbc:mysql://${{ secrets.AWS_RDS }}:3306/<db-name>
+            -e SPRING_DATASOURCE_USERNAME=${{ secrets.AWS_RDS_USERNAME }} \
+            -e SPRING_DATASOURCE_PASSWORD=${{ secrets.AWS_RDS_PASSWORD }} \
+            
             sudo docker image prune -a -f
 
             
