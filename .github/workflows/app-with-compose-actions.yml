@@ -53,7 +53,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/app-with-actions:latest
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/lion-app-with-actions:latest
   cd:
     needs: ci
     runs-on: ubuntu-latest
@@ -71,6 +71,6 @@ jobs:
             sudo docker stop $(sudo docker ps -aq)
             sudo docker container prune -f
             sudo docker rmi $(sudo docker images -aq)
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/app-with-actions
+            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/lion-app-with-actions:latest
             sudo docker-compose up -d
             sudo docker image prune -a -f
