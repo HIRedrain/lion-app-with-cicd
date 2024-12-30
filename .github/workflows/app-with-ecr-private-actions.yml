@@ -40,8 +40,8 @@ jobs:
         IMAGE_TAG: latest
       run: |
         aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_PRIVATE }}
-
-        # ECR 에다가 접근해서 올려 주는 거
-        docker build -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
         
-        docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+        # ECR 에다가 접근해서 올려 주는 거
+        docker build -t first-private-ecr .
+        
+        docker push ${{ secrets.AWS_ECR_PRIVATE }}/first-private-ecr:latest
