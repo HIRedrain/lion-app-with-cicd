@@ -36,7 +36,7 @@ jobs:
     - name: Build, tag, and push docker image to Amazon ECR private
       env:
         REGISTRY: ${{ secrets.AWS_ECR_PRIVATE }}  # ECR 주소
-        REPOSITORY: first-ecr-private            # 리포지토리 이름
+        REPOSITORY: ${{ secrets.ECR_PRIVATE_REPOSITORY }} # 리포지토리 이름
         IMAGE_TAG: latest                        # 이미지 태그
       run: |
         # AWS ECR 로그인
