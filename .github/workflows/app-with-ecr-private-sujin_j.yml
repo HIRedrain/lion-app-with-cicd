@@ -26,7 +26,7 @@ jobs:
       - name: Login to Amazon ECR (Private)
         run: |
           aws ecr get-login-password --region ap-northeast-2 | docker login --username AWS --password-stdin ${{ secrets.secrets.AWS_ECR_PRIVATE }}
-
+          
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.secrets.AWS_ECR_PRIVATE }}/first-private-ecr:latest .
