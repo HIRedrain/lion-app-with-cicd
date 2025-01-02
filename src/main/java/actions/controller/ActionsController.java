@@ -8,7 +8,7 @@ public class ActionsController {
 	
 	@GetMapping(value = "/api/actions")
 	public String actionsTest() {
-		return "app-with-actions version:0.0.1 - HELLO, WORLD!";
+		return "app-with-actions version:0.0.1 - 2025-01-02-14-24";
 	}
 	
 }
