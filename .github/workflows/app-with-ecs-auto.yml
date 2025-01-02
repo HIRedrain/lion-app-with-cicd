@@ -1,9 +1,9 @@
 name: User source Deploy to Amazon ECR & ECS
 on:
-  workflow_dispatch
-  # push:
-  #   branches:
-  #     - main
+  #workflow_dispatch
+   push:
+     branches:
+       - main
 env:
   AWS_REGION: ap-northeast-2
   ECR_REPOSITORY: ${{ secrets.ECR_PRIVATE_REPOSITORY }}
@@ -72,7 +72,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: latest
         run: |
-          aws ecs describe-task-definition --task-definition $${{ secrets.AWS_ECS_FAMILY }} --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition ${{ secrets.AWS_ECS_FAMILY }} --query taskDefinition > task-definition.json
           cat task-definition.json
           echo "task-def-file=task-definition.json" >> $GITHUB_OUTPUT
 
