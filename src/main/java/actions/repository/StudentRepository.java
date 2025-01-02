@@ -1,9 +1,9 @@
-// package actions.repository;
+package actions.repository;
 
-// import actions.entity.Student;
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import org.springframework.stereotype.Repository;
+import actions.entity.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// @Repository
-// public interface StudentRepository extends JpaRepository<Student, Long> {
-// }
+@Repository
+public interface StudentRepository extends JpaRepository<Student, Long> {
+}
