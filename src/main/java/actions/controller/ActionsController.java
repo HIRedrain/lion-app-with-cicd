@@ -10,5 +10,10 @@ public class ActionsController {
 	public String actionsTest() {
 		return "app-with-actions version:0.0.1";
 	}
+
+	@GetMapping("/api/status")
+	public String statusTest() {
+		return "status - returned by pod // 2025.01.08";
+	}
 	
 }
